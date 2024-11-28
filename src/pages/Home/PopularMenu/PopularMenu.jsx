@@ -1,19 +1,22 @@
-import React, { useEffect, useState } from 'react';
+
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
-import { data } from 'autoprefixer';
+
 import MenuItem from '../../Shared/MenuItem/MenuItem';
+import useMenu from '../../../Hooks/useMenu';
 
 const PopularMenu = () => {
-    const [menu, setMenu] = useState([]);
-    useEffect(() => {
-        fetch('menu.json')
-            .then(res => res.json())
-            .then(data => {
-                const popularItems = data.filter(item => item.category === 'popular')
-                setMenu(popularItems)
-            })
-    }, [])
-    return (
+    // const [menu, setMenu] = useState([]);
+    // useEffect(() => {
+    //     fetch('menu.json')
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             const popularItems = data.filter(item => item.category === 'popular')
+    //             setMenu(popularItems)
+    //         })
+    // }, [])
+    const [menu] = useMenu();
+    const popular = menu.filter(item => item.category ==='popular') 
+       return (
         <section className='mb-12'>
             <SectionTitle
                 heading={'FROM OUR MENU'}
@@ -22,7 +25,7 @@ const PopularMenu = () => {
             </SectionTitle>
             <div className='grid md:grid-cols-2 gap-10'>
                 {
-                    menu.map(item => <MenuItem key={item._id} item={item}></MenuItem>)
+                    popular.map(item => <MenuItem key={item._id} item={item}></MenuItem>)
                 }
             </div>
             <div className="flex justify-center items-center h-full mt-4">
