@@ -4,6 +4,8 @@ import { AuthContext } from '../../providers/AuthProvider';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
+import img from '../../assets/others/authentication2.png'
+import SocialLogin from '../../components/socialLogin/SocialLogin';
 
 const Login = () => {
 
@@ -67,26 +69,23 @@ const Login = () => {
                 <title>Bistro Boss | Login</title>
             </Helmet>
 
-            <div className="hero bg-base-200 ">
+            <div className="hero bg-base-200  " style={{ boxShadow: '1px 2px 9px #F4AAB9', margin: '4em', padding: '1em' }} >
                 <div className="hero-content flex-col md:flex-row">
                     <div className="text-center lg:text-left">
-                        <h1 className="text-5xl font-bold">Login now!</h1>
-                        <p className="py-6">
-                            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                            quasi. In deleniti eaque aut repudiandae et a id nisi.
-                        </p>
+                       <img src={img} alt="" />
                     </div>
-                    <div className="card bg-base-100 md:w-1/2 max-w-sm  shadow-2xl">
-                        <form onSubmit={handleLogin} className="card-body">
+                    <div className="card md:w-1/2 max-w-sm  ">
+                        <form onSubmit={handleLogin} className="card-body shadow-none bg-none" >
+                            <h2 className='text-2xl font-bold text-center'>Login Now</h2>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Email</span>
+                                    <span className="label-text font-semibold">Email</span>
                                 </label>
                                 <input name='email' type="email" placeholder="email" className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Password</span>
+                                    <span className="label-text font-semibold">Password</span>
                                 </label>
                                 <input type="password" placeholder="password" className="input input-bordered" required name='password' />
                                 <label className="label">
@@ -102,12 +101,17 @@ const Login = () => {
 
                             </div>
                             <div className="form-control mt-6">
-                                <input disabled={disabled} className="btn btn-primary" type='submit' value='Login' />
+                                {/* make disable */}
+                                <input disabled={false} className="btn bg-amber-600 text-white " type='submit' value='Login' />
                             </div>
-                            <p> <small>New Here ? <Link to='/signup'>Create A new Account</Link></small> </p>
+                            <p> <small>New Here ? <Link to='/signup' className='text-red-400 text-center'>Create A new Account</Link></small> </p>
+                            <p className='text-center'>Or Sign in with</p>
+                            <SocialLogin></SocialLogin>
                         </form>
+                        
                     </div>
                 </div>
+                
             </div>
         </>
 
